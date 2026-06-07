@@ -16,7 +16,7 @@ My long-term goal is to contribute to infrastructure consultancy work — the ki
 ## Experience highlights
 
 ### Total Safe Development Construction Inc. — Document Control & QA Engineer
-*2024 – present · San Rafael & Plaridel, Bulacan*
+*2025 – present · San Rafael & Plaridel, Bulacan*
 
 - Manage the full RFI/RFA/submittal/NCR document lifecycle across multiple subcontractors
 - Support cost control activities including monitoring of project expenditures against budget and flagging cost variances to Contract Admin and Supervisors.
