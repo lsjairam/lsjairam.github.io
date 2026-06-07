@@ -9,7 +9,7 @@
 
 I'm a PRC-licensed civil engineer currently working at **Total Safe Development Construction Inc.** (A AA ACAB licensed general contractor) across document control, on-site QA, and cost control functions. My day-to-day spans RFI/RFA/submittal/NCR management, subcontractor coordination, plan review, site inspections with the Project Manager and PIC, supplier evaluation, and supporting project cost monitoring — including rebar works, concrete QA, and method statement preparation.
 
-My long-term goal is to contribute to infrastructure consultancy work — the kind that shapes how regions develop, specially the province that I live in. Currently, I'm keeping a close eye on the **Luzon Economic Corridor** and multilateral-funded projects as the context I want to grow into.
+My long-term goal is to enter consultancy and help shape the lived environment and experiences of the communities I work in. Currently, I'm keeping a close eye on the **Luzon Economic Corridor** and multilateral-funded projects as the context I want to grow into.
 
 ---
 
@@ -24,7 +24,7 @@ My long-term goal is to contribute to infrastructure consultancy work — the ki
 - Conduct in-situ concrete QA including slump testing, cylinder casting, and demolding verification per **ASTM C31**
 - Participate in rebar inspections — checking against approved cutting lists, shop drawings, and structural plans
 - Prepare and review method statements for key construction activities
-- Set up and manage a self-made punchlisting monitoring system.
+- Set up and manage a self-made punchlist tracking system.
 - Track NCR status and coordinate corrective action with subcontractors and material suppliers
 
 ### DPWH Bulacan 2nd District Engineering Office — Engineering Intern
@@ -83,9 +83,9 @@ If you're a recruiter, project manager, or fellow engineer — feel free to reac
 
 ## Contact
 
-- 📧 [lsjairam@gmail.com](mailto:lsjairaml@gmail.com)
+- 📧 [lsjairam@gmail.com](mailto:lsjairam@gmail.com)
 - 💼 [LinkedIn](https://linkedin.com/in/lsjairam)
-- 📍 Santa Maria, Bulacan · Open to relocation within Greater Manila Area
+- 📍 Bulacan, Philippines · Open to relocation within Greater Manila Area
 
 ---
 
