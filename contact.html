@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — L. J. Llamas | Civil Engineer</title>
+  <meta name="description" content="Contact L. J. Llamas — civil engineer specializing in construction coordination, technical documentation, and project execution support. Professional inquiries welcome.">
+  <link rel="canonical" href="https://engrllamas.com/contact.html">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ---------- TOKENS (unified with Home/About/CV) ---------- */
+    :root {
+      --color-bg-base: #0B0F19;
+      --color-surface: #111827;
+      --color-surface-elevated: #1E293B;
+      --color-border: #1E293B;
+      --color-text-muted: #94A3B8;
+      --color-text-body: #CBD5E1;
+      --color-text-heading: #F8FAFC;
+      --color-accent-primary: #2563EB;
+      
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+      
+      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      
+      --duration-fast: 150ms;
+      --duration-med: 300ms;
+      --duration-slow: 600ms;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--color-bg-base);
+      color: var(--color-text-body);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-text-heading);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      margin-bottom: var(--space-lg);
+      border-left: 3px solid var(--color-accent-primary);
+      padding-left: var(--space-md);
+    }
+    
+    a {
+      color: var(--color-text-body);
+      text-decoration: none;
+      transition: color var(--duration-fast) ease;
+    }
+    
+    a:hover {
+      color: var(--color-accent-primary);
+    }
+    
+    /* ---------- LAYOUT ---------- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+    
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 var(--space-md);
+      }
+    }
+    
+    /* ---------- BACKGROUND GRID ---------- */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+    }
+    
+    .bg-grid svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* ---------- HEADER / NAV ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 25, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-sm) 0;
+    }
+    
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      color: var(--color-text-heading);
+    }
+    
+    .nav-list {
+      display: flex;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: var(--space-xs) 0;
+      position: relative;
+    }
+    
+    .nav-link.active {
+      color: var(--color-accent-primary);
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text-heading);
+      cursor: pointer;
+      padding: var(--space-xs);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    
+    @media (max-width: 760px) {
+      .nav-list {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-bg-base);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-2xl);
+        transform: translateX(100%);
+        transition: transform var(--duration-med) var(--ease-out);
+        z-index: 200;
+      }
+      .nav-list.open {
+        transform: translateX(0);
+      }
+      .mobile-toggle {
+        display: block;
+        z-index: 210;
+      }
+      .nav-list .nav-link {
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* ---------- BUTTONS & CARDS ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2px;
+      font-weight: 500;
+      transition: all var(--duration-fast) var(--ease-out);
+      background: transparent;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+      color: var(--color-bg-base);
+    }
+    
+    .btn-primary:hover:not(:disabled) {
+      background: #1e4fbf;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+    }
+    
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    /* ---------- CONTACT LAYOUT ---------- */
+    .contact-hero {
+      margin: var(--space-2xl) 0 var(--space-xl);
+    }
+    
+    .identity-content {
+      max-width: 780px;
+    }
+    
+    .identity-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent-primary);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .identity-tagline {
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-sm);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin: var(--space-xl) 0;
+    }
+    
+    .contact-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+    }
+    
+    .contact-card h3 {
+      margin-bottom: var(--space-md);
+      font-size: 1.3rem;
+    }
+    
+    .email-display {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      background: var(--color-surface-elevated);
+      padding: var(--space-sm);
+      border-radius: 4px;
+      margin: var(--space-md) 0;
+      word-break: break-all;
+    }
+    
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: var(--space-xs);
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: var(--space-sm);
+      background: var(--color-bg-base);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-body);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border-radius: 2px;
+      transition: border-color var(--duration-fast);
+    }
+    
+    /* Textarea resize control: no horizontal resize, limited vertical */
+    .form-group textarea {
+      resize: vertical;
+      max-height: 200px;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent-primary);
+    }
+    
+    .form-group input[aria-invalid="true"],
+    .form-group textarea[aria-invalid="true"] {
+      border-color: #f87171;
+    }
+    
+    .error-message {
+      font-size: 0.75rem;
+      color: #f87171;
+      margin-top: var(--space-xs);
+      display: block;
+    }
+    
+    .form-status {
+      margin-top: var(--space-md);
+      padding: var(--space-sm);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      display: none;
+    }
+    
+    .form-status.success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid #22c55e;
+      color: #22c55e;
+    }
+    
+    .form-status.error {
+      background: rgba(248, 113, 113, 0.1);
+      border: 1px solid #f87171;
+      color: #f87171;
+    }
+    
+    .inquiry-list {
+      list-style: none;
+      margin-top: var(--space-md);
+    }
+    
+    .inquiry-list li {
+      margin-bottom: var(--space-sm);
+      padding-left: var(--space-md);
+      position: relative;
+    }
+    
+    .inquiry-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-primary);
+    }
+    
+    .availability-note {
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-accent-primary);
+      padding: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+    
+    @media (max-width: 760px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+    
+    /* ---------- SPACING ---------- */
+    .section-spacing {
+      margin: var(--space-3xl) 0;
+    }
+    
+    /* ---------- FOOTER ---------- */
+    .site-footer {
+      margin-top: var(--space-3xl);
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+    
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+    
+    /* ---------- SCROLL REVEAL ---------- */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-reveal {
+        transition: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true">
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-dasharray="2 2"/>
+      </pattern>
+      <pattern id="contour" width="120" height="120" patternUnits="userSpaceOnUse">
+        <path d="M 10 60 Q 40 20 70 60 T 130 60" fill="none" stroke="#2563EB" stroke-width="0.6" opacity="0.2"/>
+        <path d="M 0 100 Q 30 140 80 100 T 160 100" fill="none" stroke="#2563EB" stroke-width="0.6" opacity="0.15"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)"/>
+    <rect width="100%" height="100%" fill="url(#contour)"/>
+  </svg>
+</div>
+
+<header class="site-header">
+  <div class="container nav-container">
+    <a href="index.html" class="logo">L. J. Llamas</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+    <ul class="nav-list" id="navList">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="cv.html" class="nav-link">CV</a></li>
+      <li><a href="artifacts.html" class="nav-link">Artifacts</a></li>
+      <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link active">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <!-- Header Identity Block -->
+    <div class="contact-hero scroll-reveal">
+      <div class="identity-content">
+        <div class="identity-title">Civil Engineer</div>
+        <h1>L. J. Llamas</h1>
+        <div class="identity-tagline">Available for professional inquiries, collaboration, and opportunities.</div>
+      </div>
+    </div>
+
+    <!-- Primary Contact + Form (two-column) -->
+    <div class="contact-grid scroll-reveal">
+      <!-- Left: Direct email contact -->
+      <div class="contact-card">
+        <h3>Direct contact</h3>
+        <div class="email-display">lsjairam@gmail.com</div>
+        <a href="mailto:lsjairam@gmail.com" class="btn btn-primary" style="width: 100%; justify-content: center;">Send email →</a>
+        <p style="margin-top: var(--space-md); font-size: 0.85rem; color: var(--color-text-muted);">Opens your default email client.</p>
+      </div>
+
+      <!-- Right: Formspree AJAX form (clean status messages) -->
+      <div class="contact-card">
+        <h3>Quick message</h3>
+        <form id="contact-form">
+          <!-- Honeypot field to reduce spam -->
+          <div style="display: none;">
+            <label for="honeypot">If you are human, leave this field blank</label>
+            <input type="text" name="_gotcha" id="honeypot" />
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required data-fs-field />
+            <span data-fs-error="name" class="error-message"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required data-fs-field />
+            <span data-fs-error="email" class="error-message"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required data-fs-field></textarea>
+            <span data-fs-error="message" class="error-message"></span>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" data-fs-submit-btn>
+            Send message
+          </button>
+          
+          <!-- Status messages: initially hidden, shown by Formspree on success/error -->
+          <div data-fs-success class="form-status"></div>
+          <div data-fs-error class="form-status"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Inquiry Context Section -->
+    <section class="scroll-reveal">
+      <h2>Inquiry context</h2>
+      <div class="contact-card">
+        <p style="margin-bottom: var(--space-md);">Professional inquiries are welcome in the following areas:</p>
+        <ul class="inquiry-list">
+          <li>Recruitment opportunities (construction coordination, document control, project support)</li>
+          <li>Project coordination roles in engineering or construction environments</li>
+          <li>Engineering collaboration within infrastructure, design, or field execution</li>
+          <li>Future consultancy discussions (systems optimization, project management advisory)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Availability Note -->
+    <div class="availability-note scroll-reveal">
+      <p style="color: var(--color-text-heading); font-weight: 500;">📬 Response expectation</p>
+      <p style="margin-top: var(--space-sm);">Typically responds within a reasonable timeframe. All genuine professional inquiries receive attention.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p>L. J. Llamas — Civil Engineering</p>
+      <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--space-xs);">© 2026 — All rights reserved</p>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:lsjairam@gmail.com" class="footer-link">✉ Email</a>
+      <a href="https://linkedin.com/in/lsjairam" target="_blank" rel="noopener noreferrer" class="footer-link">in LinkedIn</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Formspree AJAX SDK -->
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script>
+  (function() {
+    // Mobile menu toggle
+    const toggle = document.getElementById('mobileToggle');
+    const navList = document.getElementById('navList');
+    if (toggle && navList) {
+      toggle.addEventListener('click', () => {
+        navList.classList.toggle('open');
+        toggle.textContent = navList.classList.contains('open') ? '✕' : '☰';
+      });
+      navList.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navList.classList.remove('open');
+          toggle.textContent = '☰';
+        });
+      });
+    }
+    
+    // Active link highlight
+    let currentPage = window.location.pathname.split('/').pop();
+    if (currentPage === "" || currentPage === "/") currentPage = "index.html";
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPage || (currentPage === "contact.html" && href === "contact.html")) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    
+    // Scroll reveal observer
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+    revealElements.forEach(el => observer.observe(el));
+    
+    setTimeout(() => {
+      revealElements.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.classList.add('revealed');
+          observer.unobserve(el);
+        }
+      });
+    }, 100);
+    
+    // Initialize Formspree AJAX form
+    if (window.formspree) {
+      window.formspree('initForm', {
+        formElement: '#contact-form',
+        formId: 'mykaeodj'
+      });
+    }
+  })();
+</script>
+</body>
+</html>
