@@ -1,0 +1,34 @@
+/* Self-hosted Archivo variable family — SIL Open Font License, see assets/fonts/OFL.txt */
+@font-face {
+  font-family: 'Archivo';
+  src: url('../assets/Archivo[wdth,wght].ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62.5% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('../assets/Archivo-Italic[wdth,wght].ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62.5% 125%;
+  font-display: swap;
+}
+
+:root {
+  --font-heading: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body { font-variant-numeric: tabular-nums; }
+h1 { font-stretch: 110%; font-weight: 700; letter-spacing: -0.035em; }
+h2, h3 { font-weight: 650; }
+.mono-label, .tag-chip, .artifact-meta { font-stretch: 87.5%; font-weight: 650; letter-spacing: 0.09em; }
+.nav-link, .btn, .link-arrow { font-weight: 620; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid #60A5FA;
+  outline-offset: 3px;
+}
