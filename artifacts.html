@@ -1,339 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artifacts — L. J. Llamas | Civil Engineer</title>
-  <meta name="description" content="Engineering artifacts, deliverables, and documentation from L. J. Llamas — under construction.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2eee5">
+  <title>Artifacts — L. J. Llamas</title>
+  <meta name="description" content="Selected construction documents and field systems created by registered civil engineer L. J. Llamas.">
   <link rel="canonical" href="https://engrllamas.com/artifacts.html">
-  <link rel="stylesheet" href="css/archivo.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
-    /* ---------- TOKENS (unified) ---------- */
-    :root {
-      --color-bg-base: #0B0F19;
-      --color-surface: #111827;
-      --color-surface-elevated: #1E293B;
-      --color-border: #1E293B;
-      --color-text-muted: #94A3B8;
-      --color-text-body: #CBD5E1;
-      --color-text-heading: #F8FAFC;
-      --color-accent-primary: #2563EB;
-      
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2rem;
-      --space-xl: 3rem;
-      --space-2xl: 4rem;
-      --space-3xl: 6rem;
-      
-      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'IBM Plex Mono', monospace;
-      
-      --duration-fast: 150ms;
-      --duration-med: 300ms;
-      --duration-slow: 600ms;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      background-color: var(--color-bg-base);
-      color: var(--color-text-body);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    h1, h2, h3 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      color: var(--color-text-heading);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-    
-    h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    
-    a {
-      color: var(--color-text-body);
-      text-decoration: none;
-      transition: color var(--duration-fast) ease;
-    }
-    a:hover { color: var(--color-accent-primary); }
-    
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-      position: relative;
-      z-index: 2;
-    }
-    
-    @media (max-width: 640px) { .container { padding: 0 var(--space-md); } }
-    
-    .bg-grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.12;
-    }
-    
-    /* Header / Nav (glass) */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11, 15, 25, 0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--space-sm) 0;
-    }
-    
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .logo {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-      color: var(--color-text-heading);
-    }
-    
-    .nav-list {
-      display: flex;
-      gap: var(--space-lg);
-      list-style: none;
-    }
-    
-    .nav-link {
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: var(--space-xs) 0;
-    }
-    
-    .nav-link.active { color: var(--color-accent-primary); }
-    
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--color-text-heading);
-      cursor: pointer;
-      padding: var(--space-xs);
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-    
-    @media (max-width: 760px) {
-      .nav-list {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: var(--color-bg-base);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: var(--space-2xl);
-        transform: translateX(100%);
-        transition: transform var(--duration-med) var(--ease-out);
-        z-index: 200;
-      }
-      .nav-list.open { transform: translateX(0); }
-      .mobile-toggle { display: block; z-index: 210; }
-      .nav-list .nav-link { font-size: 1.5rem; }
-    }
-    
-    /* Under construction block */
-    .construction-hero {
-      margin: var(--space-3xl) 0 var(--space-3xl);
-      text-align: center;
-    }
-    
-    .construction-icon {
-      font-size: 4rem;
-      margin-bottom: var(--space-lg);
-      opacity: 0.7;
-    }
-    
-    .construction-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      padding: var(--space-2xl);
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    
-    .notice {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--color-accent-primary);
-      margin-top: var(--space-lg);
-      letter-spacing: 0.05em;
-    }
-    
-    /* Footer */
-    .site-footer {
-      margin-top: var(--space-3xl);
-      padding: var(--space-xl) 0;
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface);
-    }
-    
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--space-lg);
-    }
-    
-    .footer-links {
-      display: flex;
-      gap: var(--space-lg);
-      flex-wrap: wrap;
-    }
-    
-    .footer-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-    }
-    
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-    }
-    .scroll-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .scroll-reveal { transition: none; opacity: 1; transform: none; }
-    }
-  </style>
+  <link rel="preload" href="assets/fonts/Archivo[wdth,wght].ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/archivo.css"><link rel="stylesheet" href="css/portfolio.css?v=2">
+  <script>try{const t=localStorage.getItem('engrllamas-theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='dark'}catch(_){}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="site-width nav-shell">
+    <a class="brand" href="index.html" aria-label="Engrllamas home">L. J. Llamas</a>
+    <nav class="primary-nav" data-primary-nav aria-label="Primary navigation"><ul class="nav-list"><li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link" href="index.html#about">About</a></li><li><a class="nav-link" href="index.html#work">Work</a></li><li><a class="nav-link" href="index.html#experience">Experience</a></li><li><a class="nav-link" href="cv.html">CV</a></li><li><a class="nav-link active" href="artifacts.html" aria-current="page">Artifacts</a></li><li><a class="nav-link" href="blog/">Blog</a></li><li><a class="nav-link" href="contact.html">Contact</a></li></ul></nav>
+    <div class="header-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.2 8.2 0 0 1 8.8 3.8 8.3 8.3 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button class="menu-toggle" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  </div></header>
 
-<div class="bg-grid" aria-hidden="true">
-  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-dasharray="2 2"/>
-      </pattern>
-      <pattern id="contour" width="120" height="120" patternUnits="userSpaceOnUse">
-        <path d="M 10 60 Q 40 20 70 60 T 130 60" fill="none" stroke="#2563EB" stroke-width="0.6" opacity="0.2"/>
-        <path d="M 0 100 Q 30 140 80 100 T 160 100" fill="none" stroke="#2563EB" stroke-width="0.6" opacity="0.15"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#grid)"/>
-    <rect width="100%" height="100%" fill="url(#contour)"/>
-  </svg>
-</div>
+  <main class="page-main" id="main">
+    <section class="page-hero site-width"><p class="eyebrow reveal is-visible">Artifacts · Working evidence</p><div class="page-hero-grid"><h1 class="reveal is-visible">Documents with a <span>job to do.</span></h1><p class="page-lead reveal is-visible" data-delay="1">A growing archive of sample technical correspondence, practical templates, and construction workflows. Sensitive project information is excluded.</p></div></section>
 
-<header class="site-header">
-  <div class="container nav-container">
-    <a href="index.html" class="logo">L. J. Llamas</a>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
-    <ul class="nav-list" id="navList">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="cv.html" class="nav-link">CV</a></li>
-      <li><a href="artifacts.html" class="nav-link active">Artifacts</a></li>
-      <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-  </div>
-</header>
-
-<main>
-  <div class="container">
-    <div class="construction-hero scroll-reveal">
-      <div class="construction-card">
-        <div class="construction-icon">📐 📄</div>
-        <h1>Artifacts archive</h1>
-        <p style="margin: var(--space-md) 0; font-size: 1.1rem;">Engineering deliverables, construction plans, technical reports, and coordination documents.</p>
-        <div class="notice">⟡ This section is under construction. Full collection coming soon. ⟡</div>
+    <section class="page-content site-width" aria-labelledby="archive-heading"><div class="content-grid">
+      <aside class="content-aside reveal"><span class="content-aside-label">01 / Archive</span><h2 id="archive-heading">Selected artifacts</h2><p>Samples are provided to demonstrate structure and communication—not to expose live project records.</p></aside>
+      <div class="archive-grid">
+        <article class="archive-card reveal"><span class="card-type">Technical correspondence · PDF</span><h2>Structural column misalignment</h2><p>A sample request for approval documenting a non-compliance condition and proposed technical resolution.</p><a class="text-link" href="Samples/RFA-SAMPLE-FOR%20SUBMISSION.pdf" target="_blank" rel="noopener">Open sample PDF <span aria-hidden="true">↗</span></a></article>
+        <article class="archive-card reveal" data-delay="1"><span class="card-type">Live field system · Web app</span><h2>QA/QC punchlisting system</h2><p>Field capture, photographs, priorities, assignment, verification, and reporting in one traceable workflow.</p><a class="text-link" href="https://forms.engrllamas.com">Open QA/QC system <span aria-hidden="true">↗</span></a></article>
+        <article class="archive-card reveal"><span class="card-type">Portfolio · PDF</span><h2>Curriculum vitae</h2><p>Professional experience, project involvement, credentials, technical practice, and software capabilities.</p><a class="text-link" href="assets/llamas-cv.pdf" target="_blank" rel="noopener">Open CV PDF <span aria-hidden="true">↗</span></a></article>
+        <article class="archive-card reveal" data-delay="1"><span class="card-type">Archive note</span><h2>More work will be added carefully.</h2><p>Future additions will use redacted or purpose-made examples so project and stakeholder information remains protected.</p><a class="text-link" href="contact.html">Ask about my work <span aria-hidden="true">→</span></a></article>
       </div>
-    </div>
-  </div>
-</main>
+    </div></section>
+  </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div>
-      <p>L. J. Llamas — Civil Engineering</p>
-      <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--space-xs);">© 2026 — All rights reserved</p>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:lsjairam@gmail.com" class="footer-link">✉ Email</a>
-      <a href="https://linkedin.com/in/lsjairam" target="_blank" rel="noopener noreferrer" class="footer-link">in LinkedIn</a>
-      <a href="contact.html" class="footer-link">Contact</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  (function() {
-    const toggle = document.getElementById('mobileToggle');
-    const navList = document.getElementById('navList');
-    if (toggle && navList) {
-      toggle.addEventListener('click', () => {
-        navList.classList.toggle('open');
-        toggle.textContent = navList.classList.contains('open') ? '✕' : '☰';
-      });
-      navList.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          navList.classList.remove('open');
-          toggle.textContent = '☰';
-        });
-      });
-    }
-    
-    let currentPage = window.location.pathname.split('/').pop();
-    if (currentPage === "" || currentPage === "/") currentPage = "index.html";
-    document.querySelectorAll('.nav-link').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPage || (currentPage === "artifacts.html" && href === "artifacts.html")) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-    
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    revealElements.forEach(el => observer.observe(el));
-  })();
-</script>
+  <footer class="site-footer"><div class="site-width footer-row"><span>© 2026 L. J. Llamas · Civil Engineering</span><div class="footer-links"><a href="mailto:lsjairam@gmail.com">Email</a><a href="https://linkedin.com/in/lsjairam" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#main">Back to top ↑</a></div></div></footer>
+  <script src="js/portfolio.js?v=2" defer></script>
 </body>
 </html>

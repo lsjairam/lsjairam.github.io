@@ -1,771 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV — L. J. Llamas | Civil Engineer</title>
-  <meta name="description" content="Curriculum Vitae of L. J. Llamas — civil engineer with experience in construction coordination, document control, and project execution support.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2eee5">
+  <title>CV — L. J. Llamas</title>
+  <meta name="description" content="Experience, credentials, project involvement, and technical capabilities of registered civil engineer L. J. Llamas.">
   <link rel="canonical" href="https://engrllamas.com/cv.html">
+  <link rel="preload" href="assets/fonts/Archivo[wdth,wght].ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="css/archivo.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
-    /* ---------- TOKENS (dark engineering theme) ---------- */
-    :root {
-      --color-bg-base: #0B0F19;
-      --color-surface: #111827;
-      --color-surface-elevated: #1E293B;
-      --color-border: #1E293B;
-      --color-text-muted: #94A3B8;
-      --color-text-body: #CBD5E1;
-      --color-text-heading: #F8FAFC;
-      --color-accent-primary: #2563EB;
-      
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2rem;
-      --space-xl: 3rem;
-      --space-2xl: 4rem;
-      --space-3xl: 6rem;
-      
-      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'IBM Plex Mono', monospace;
-      
-      --duration-fast: 150ms;
-      --duration-med: 300ms;
-      --duration-slow: 600ms;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      background-color: var(--color-bg-base);
-      color: var(--color-text-body);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    h1, h2, h3 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      color: var(--color-text-heading);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-    
-    h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    
-    h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 600;
-      margin-bottom: var(--space-lg);
-      border-left: 3px solid var(--color-accent-primary);
-      padding-left: var(--space-md);
-    }
-    
-    a {
-      color: var(--color-text-body);
-      text-decoration: none;
-      transition: color var(--duration-fast) ease;
-    }
-    
-    a:hover {
-      color: var(--color-accent-primary);
-    }
-    
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-      position: relative;
-      z-index: 2;
-    }
-    
-    @media (max-width: 640px) {
-      .container {
-        padding: 0 var(--space-md);
-      }
-    }
-    
-    /* ---------- HEADER / NAV (glass) ---------- */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11, 15, 25, 0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--space-sm) 0;
-    }
-    
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .logo {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-      color: var(--color-text-heading);
-    }
-    
-    .nav-list {
-      display: flex;
-      gap: var(--space-lg);
-      list-style: none;
-    }
-    
-    .nav-link {
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: var(--space-xs) 0;
-      position: relative;
-    }
-    
-    .nav-link.active {
-      color: var(--color-accent-primary);
-    }
-    
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--color-text-heading);
-      cursor: pointer;
-      padding: var(--space-xs);
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-    
-    @media (max-width: 760px) {
-      .nav-list {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: var(--color-bg-base);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: var(--space-2xl);
-        transform: translateX(100%);
-        transition: transform var(--duration-med) var(--ease-out);
-        z-index: 200;
-      }
-      .nav-list.open {
-        transform: translateX(0);
-      }
-      .mobile-toggle {
-        display: block;
-        z-index: 210;
-      }
-      .nav-list .nav-link {
-        font-size: 1.5rem;
-      }
-    }
-    
-    /* ---------- BUTTONS ---------- */
-    .btn-group {
-      display: flex;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-      margin: var(--space-lg) 0 var(--space-2xl);
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-xs);
-      padding: 0.75rem 1.5rem;
-      border-radius: 2px;
-      font-weight: 500;
-      transition: all var(--duration-fast) var(--ease-out);
-      background: transparent;
-      border: 1px solid var(--color-border);
-    }
-    
-    .btn-primary {
-      background: var(--color-accent-primary);
-      border-color: var(--color-accent-primary);
-      color: var(--color-bg-base);
-    }
-    
-    .btn-primary:hover {
-      background: #1e4fbf;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(37,99,235,0.2);
-    }
-    
-    .btn-secondary:hover {
-      border-color: var(--color-accent-primary);
-      color: var(--color-accent-primary);
-    }
-    
-    /* ---------- IDENTITY BLOCK ---------- */
-    .identity-block {
-      margin: var(--space-2xl) 0 var(--space-lg);
-    }
-    
-    .identity-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent-primary);
-      font-weight: 500;
-      margin-bottom: var(--space-sm);
-    }
-    
-    .tagline {
-      font-size: 1.1rem;
-      color: var(--color-text-muted);
-      margin-top: var(--space-sm);
-      max-width: 700px;
-    }
-    
-    /* ---------- TIMELINE (EXPERIENCE) ---------- */
-    .timeline {
-      margin: var(--space-xl) 0;
-    }
-    
-    .timeline-item {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-2xl);
-      border-left: 2px solid var(--color-border);
-      padding-left: var(--space-lg);
-      position: relative;
-    }
-    
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -8px;
-      top: 8px;
-      width: 12px;
-      height: 12px;
-      background: var(--color-accent-primary);
-      border-radius: 50%;
-    }
-    
-    .timeline-left {
-      flex: 1;
-      min-width: 150px;
-    }
-    
-    .timeline-left .date {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--color-accent-primary);
-      font-weight: 500;
-    }
-    
-    .timeline-left .employer {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-      margin-top: var(--space-xs);
-    }
-    
-    .timeline-right {
-      flex: 3;
-    }
-    
-    .timeline-right h3 {
-      font-size: 1.25rem;
-      margin-bottom: var(--space-sm);
-    }
-    
-    .responsibilities {
-      list-style: none;
-      margin-top: var(--space-sm);
-    }
-    
-    .responsibilities li {
-      margin-bottom: var(--space-xs);
-      padding-left: var(--space-md);
-      position: relative;
-    }
-    
-    .responsibilities li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--color-accent-primary);
-    }
-    
-    /* ---------- PROJECT EXPOSURE (grid) ---------- */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-lg);
-      margin: var(--space-xl) 0;
-    }
-    
-    .project-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      padding: var(--space-lg);
-      transition: all var(--duration-fast);
-    }
-    
-    .project-card:hover {
-      border-color: var(--color-accent-primary);
-    }
-    
-    .project-card h3 {
-      margin-bottom: var(--space-sm);
-      color: var(--color-text-heading);
-      font-size: 1.1rem;
-    }
-
-    .project-type {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent-primary);
-      margin-bottom: var(--space-sm);
-    }
-
-    .project-meta {
-      font-size: 0.875rem;
-      color: var(--color-text-muted);
-      line-height: 1.7;
-      margin-bottom: var(--space-sm);
-    }
-
-    .project-role {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--color-text-body);
-      margin-bottom: 0.25rem;
-    }
-
-    .project-dates {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--color-text-muted);
-    }
-
-    /* ---------- CERTIFICATIONS ---------- */
-    .cert-item {
-      padding: var(--space-md) 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .cert-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .cert-item:first-child {
-      padding-top: 0;
-    }
-
-    .cert-name {
-      font-weight: 600;
-      color: var(--color-text-heading);
-      margin-bottom: 0.25rem;
-    }
-
-    .cert-meta {
-      font-size: 0.875rem;
-      color: var(--color-text-muted);
-      margin-bottom: 0.25rem;
-    }
-
-    .cert-date {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--color-accent-primary);
-    }
-    
-    /* ---------- SKILLS MATRIX ---------- */
-    .skills-section {
-      margin: var(--space-2xl) 0;
-    }
-    
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: var(--space-lg);
-    }
-    
-    .skill-category {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      padding: var(--space-lg);
-    }
-    
-    .skill-category h3 {
-      border-bottom: 1px solid var(--color-border);
-      padding-bottom: var(--space-sm);
-      margin-bottom: var(--space-md);
-      font-size: 1.2rem;
-    }
-    
-    .skill-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-sm);
-    }
-    
-    .skill-tag {
-      background: var(--color-surface-elevated);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-family: var(--font-mono);
-    }
-    
-    /* ---------- CERTIFICATIONS & FUTURE ---------- */
-    .certs-block {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      padding: var(--space-xl);
-      margin: var(--space-xl) 0;
-    }
-    
-    /* ---------- PDF PREVIEW (optional, secondary) ---------- */
-    .pdf-preview {
-      margin: var(--space-2xl) 0;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      padding: var(--space-lg);
-    }
-    
-    .pdf-preview h3 {
-      margin-bottom: var(--space-md);
-    }
-    
-    .pdf-placeholder {
-      background: var(--color-bg-base);
-      border: 1px dashed var(--color-border);
-      padding: var(--space-xl);
-      text-align: center;
-      color: var(--color-text-muted);
-    }
-    
-    /* ---------- FOOTER ---------- */
-    .site-footer {
-      margin-top: var(--space-3xl);
-      padding: var(--space-xl) 0;
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface);
-    }
-    
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--space-lg);
-    }
-    
-    .footer-links {
-      display: flex;
-      gap: var(--space-lg);
-      flex-wrap: wrap;
-    }
-    
-    .footer-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-    }
-    
-    /* ---------- SCROLL REVEAL ---------- */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-    }
-    
-    .scroll-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    @media (prefers-reduced-motion: reduce) {
-      .scroll-reveal {
-        transition: none;
-        opacity: 1;
-        transform: none;
-      }
-    }
-    
-    hr {
-      border: none;
-      border-top: 1px solid var(--color-border);
-      margin: var(--space-xl) 0;
-    }
-  </style>
+  <link rel="stylesheet" href="css/portfolio.css?v=2">
+  <script>try{const t=localStorage.getItem('engrllamas-theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='dark'}catch(_){}</script>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="container nav-container">
-    <a href="index.html" class="logo">L. J. Llamas</a>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
-    <ul class="nav-list" id="navList">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="cv.html" class="nav-link active">CV</a></li>
-      <li><a href="artifacts.html" class="nav-link">Artifacts</a></li>
-      <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-  </div>
-</header>
-
-<main>
-  <div class="container">
-
-    <!-- Identity block -->
-    <div class="identity-block scroll-reveal">
-      <div class="identity-title">Registered Civil Engineer</div>
-      <h1>Lois Jairam B. Llamas</h1>
-      <div class="tagline">Document control and project coordination — Santa Maria, Bulacan · PRC ID: 0220228</div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-width nav-shell">
+      <a class="brand" href="index.html" aria-label="Engrllamas home">L. J. Llamas</a>
+      <nav class="primary-nav" data-primary-nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="index.html#about">About</a></li>
+          <li><a class="nav-link" href="index.html#work">Work</a></li>
+          <li><a class="nav-link" href="index.html#experience">Experience</a></li>
+          <li><a class="nav-link active" href="cv.html" aria-current="page">CV</a></li>
+          <li><a class="nav-link" href="artifacts.html">Artifacts</a></li>
+          <li><a class="nav-link" href="blog/">Blog</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.2 8.2 0 0 1 8.8 3.8 8.3 8.3 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      </div>
     </div>
+  </header>
 
-    <!-- Primary Actions -->
-    <div class="btn-group scroll-reveal">
-      <a href="assets/llamas-cv.pdf" class="btn btn-primary" download>📄 Download CV (PDF)</a>
-      <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
-    </div>
-
-    <!-- Experience -->
-    <section class="scroll-reveal">
-      <h2>Experience</h2>
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="date">Jun 2025 – Present</div>
-            <div class="employer">Total Safe Development Construction, Inc.<br>Santa Maria, Bulacan</div>
-          </div>
-          <div class="timeline-right">
-            <h3>Document Controller Engineer</h3>
-            <ul class="responsibilities">
-              <li>Manage and systemize construction documents — RFIs, RFAs, submittals, billings, and drawing revisions — ensuring traceability and accessibility across project teams.</li>
-              <li>Coordinate with suppliers on delivery scheduling and tracking, ensuring alignment with the project schedule.</li>
-              <li>Evaluate multiple suppliers and providers to identify cost-reduction opportunities.</li>
-              <li>Serve as coordination point between project stakeholders for timely communication and resolution of document-related concerns.</li>
-              <li>Review plans and drawing revisions to identify inconsistencies and mitigate potential construction conflicts.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="date">Jun – Aug 2022</div>
-            <div class="employer">DPWH – Bulacan 2nd District Engineering Office<br>Planning Department</div>
-          </div>
-          <div class="timeline-right">
-            <h3>Civil Engineer Intern</h3>
-            <ul class="responsibilities">
-              <li>Documented site progress, site investigations, and surveying activities.</li>
-              <li>Assisted planning engineers with AutoCAD land plotting and preparation of construction bidding documents.</li>
-              <li>Archived construction reports and maintained filing of project documentation.</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="scroll-reveal">
-      <h2>Project involvement</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <span class="project-type">Residential</span>
-          <h3>2-Unit 3-Storey Dormitory Building</h3>
-          <p class="project-meta">Tai-Group Realty and Development Corp. (KOTEN Enterprise)<br>
-          Brgy. Tambubong, San Rafael, Bulacan<br>
-          Management: ELS Consultancy and Management Inc.<br>
-          Contractor: Total Safe Development Construction Inc.</p>
-          <p class="project-role">Role: Document Controller Engineer</p>
-          <p class="project-dates">Sep 15, 2025 – Nov 15, 2026</p>
-        </div>
-        <div class="project-card">
-          <span class="project-type">Industrial</span>
-          <h3>2-Storey Warehouse Building</h3>
-          <p class="project-meta">Riken Motors Sales<br>
-          Lot E13-E17, Jolly Industrial Park, Plaridel, Bulacan<br>
-          Management: Total Safe Development Construction Inc.<br>
-          Contractor: Total Safe Development Construction Inc.</p>
-          <p class="project-role">Role: Document Controller Engineer</p>
-          <p class="project-dates">Aug 15, 2025 – Apr 15, 2027</p>
+  <main class="page-main" id="main">
+    <section class="page-hero site-width">
+      <p class="eyebrow reveal is-visible">Curriculum vitae · Updated 2026</p>
+      <div class="page-hero-grid">
+        <h1 class="reveal is-visible">Work built on <span>clear records.</span></h1>
+        <div class="reveal is-visible" data-delay="1">
+          <p class="page-lead">Registered civil engineer working across document control, construction coordination, quality workflows, and project information systems.</p>
+          <div class="hero-actions"><a class="button button-primary" href="assets/llamas-cv.pdf" download>Download CV <span aria-hidden="true">↓</span></a><a class="button" href="contact.html">Contact me</a></div>
         </div>
       </div>
     </section>
 
-    <!-- Education -->
-    <section class="scroll-reveal">
-      <h2>Education</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="date">2019 – 2024</div>
-            <div class="employer">Bulacan State University<br>College of Engineering</div>
-          </div>
-          <div class="timeline-right">
-            <h3>Bachelor of Science in Civil Engineering</h3>
+    <section class="page-content site-width" aria-labelledby="experience-heading">
+      <div class="content-grid">
+        <aside class="content-aside reveal"><span class="content-aside-label">01 / Practice</span><h2 id="experience-heading">Professional experience</h2><p>Santa Maria, Bulacan<br>PRC ID 0220228</p></aside>
+        <div class="content-stack"><div class="resume-list reveal">
+          <article class="resume-item"><div class="resume-date">Jun 2025 — Present</div><div><h3>Document Controller Engineer</h3><p class="resume-meta">Total Safe Development Construction, Inc.</p><ul><li>Manages RFIs, RFAs, submittals, billings, and drawing revisions across active construction projects.</li><li>Coordinates supplier schedules, deliveries, evaluation, and cost-reduction opportunities.</li><li>Connects site, management, client, and consultant stakeholders through clear records and follow-through.</li><li>Reviews drawings and project documents to surface inconsistencies before they disrupt work.</li></ul></div></article>
+          <article class="resume-item"><div class="resume-date">Jun — Aug 2022</div><div><h3>Civil Engineer Intern</h3><p class="resume-meta">DPWH Bulacan 2nd District Engineering Office · Planning and Design</p><ul><li>Supported progress monitoring, site investigations, and surveying activities.</li><li>Prepared AutoCAD land plots and assisted with bidding documentation.</li><li>Organized and archived construction reports for dependable retrieval.</li></ul></div></article>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="page-content site-width" aria-labelledby="projects-heading">
+      <div class="content-grid">
+        <aside class="content-aside reveal"><span class="content-aside-label">02 / Delivery</span><h2 id="projects-heading">Project involvement</h2></aside>
+        <div class="content-stack">
+          <article class="content-panel reveal"><span class="panel-kicker">Sep 2025 — Nov 2026</span><h2>Two-unit, three-storey dormitory building</h2><p><strong>Location:</strong> Brgy. Tambubong, San Rafael, Bulacan</p><p><strong>Client:</strong> Tai-Group Realty / KOTEN · <strong>Management:</strong> ELS Consultancy · <strong>Contractor:</strong> TSDCI</p><p><strong>Role:</strong> Document Controller Engineer</p></article>
+          <article class="content-panel reveal"><span class="panel-kicker">Aug 2025 — Apr 2027</span><h2>Two-storey warehouse building</h2><p><strong>Location:</strong> Lots E13–E17, Jolly Industrial Park, Plaridel, Bulacan</p><p><strong>Client:</strong> Riken Motors Sales · <strong>Management and contractor:</strong> TSDCI</p><p><strong>Role:</strong> Document Controller Engineer</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-content site-width" aria-labelledby="credentials-heading">
+      <div class="content-grid">
+        <aside class="content-aside reveal"><span class="content-aside-label">03 / Foundation</span><h2 id="credentials-heading">Education and credentials</h2></aside>
+        <div class="content-stack">
+          <article class="content-panel reveal"><span class="panel-kicker">Education</span><h2>Bachelor of Science in Civil Engineering</h2><p>Bulacan State University, College of Engineering · 2019–2024</p></article>
+          <div class="credential-grid reveal">
+            <article class="credential"><b>Registered Civil Engineer</b><span>PRC ID 0220228 · Issued June 20, 2025</span></article>
+            <article class="credential"><b>Construction Occupational Safety and Health II</b><span>BESO Safety Training &amp; Consultancy · Issued July 2, 2023</span></article>
+            <article class="credential"><b>Integrated Quantity Takeoff and Project Scheduling</b><span>Planswift and MS Project Professional · XStructures · 2026-PSMSP-W2C-012</span></article>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Licenses & Certifications -->
-    <section class="scroll-reveal">
-      <h2>Licenses &amp; certifications</h2>
-      <div class="certs-block">
-
-        <div class="cert-item">
-          <div class="cert-name">Registered Civil Engineer</div>
-          <div class="cert-meta">Professional Regulation Commission · PRC ID: 0220228</div>
-          <div class="cert-date">Issued: June 20, 2025</div>
-        </div>
-
-        <div class="cert-item">
-          <div class="cert-name">Construction Occupational Safety and Health Officer II (COSH II)</div>
-          <div class="cert-meta">BESO Safety Training &amp; Consultancy Services</div>
-          <div class="cert-date">Issued: July 2, 2023</div>
-        </div>
-
-        <div class="cert-item">
-          <div class="cert-name">Integrated Quantity Takeoff and Project Scheduling using Planswift and MS Project Professional</div>
-          <div class="cert-meta">XStructures Engineering Consultants · Cert. No.: 2026-PSMSP-W2C-012</div>
-          <div class="cert-date">Issued: 2026</div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="skills-section scroll-reveal">
-      <h2>Skills &amp; tools</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Software & Tools</h3>
-          <div class="skill-items">
-            <span class="skill-tag">AutoCAD</span>
-            <span class="skill-tag">Planswift</span>
-            <span class="skill-tag">MS Project</span>
-            <span class="skill-tag">MS Excel</span>
-            <span class="skill-tag">MS Word</span>
-            <span class="skill-tag">MS PowerPoint</span>
-            <span class="skill-tag">Adobe Photoshop</span>
-            <span class="skill-tag">Adobe Premiere Pro</span>
-            <span class="skill-tag">Canva</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Engineering Functions</h3>
-          <div class="skill-items">
-            <span class="skill-tag">Document Control</span>
-            <span class="skill-tag">Project Coordination</span>
-            <span class="skill-tag">Cost Monitoring</span>
-            <span class="skill-tag">Quantity Takeoff</span>
-            <span class="skill-tag">Scheduling</span>
-            <span class="skill-tag">Materials QA</span>
-            <span class="skill-tag">Technical Documentation</span>
-            <span class="skill-tag">Subcontractor Evaluation</span>
-          </div>
+    <section class="page-content site-width" aria-labelledby="skills-heading">
+      <div class="content-grid">
+        <aside class="content-aside reveal"><span class="content-aside-label">04 / Toolkit</span><h2 id="skills-heading">Skills and software</h2></aside>
+        <div class="content-stack">
+          <article class="content-panel reveal"><span class="panel-kicker">Technical practice</span><ul class="tag-list"><li>Document control</li><li>Project coordination</li><li>Cost estimating</li><li>Cost monitoring</li><li>Quantity takeoff</li><li>Scheduling</li><li>Materials QA</li><li>Technical documentation</li><li>Subcontractor evaluation</li></ul></article>
+          <article class="content-panel reveal"><span class="panel-kicker">Software</span><ul class="tag-list"><li>AutoCAD</li><li>Revit</li><li>SketchUp</li><li>Planswift</li><li>Microsoft Project</li><li>Excel</li><li>Word</li><li>PowerPoint</li><li>Photoshop</li><li>Premiere Pro</li><li>Canva</li></ul></article>
         </div>
       </div>
     </section>
+  </main>
 
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div>
-      <p>L. J. Llamas — Civil Engineering</p>
-      <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--space-xs);">© 2026 — All rights reserved</p>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:lsjairam@gmail.com" class="footer-link">✉ Email</a>
-      <a href="https://linkedin.com/in/lsjairam" target="_blank" rel="noopener noreferrer" class="footer-link">in LinkedIn</a>
-      <a href="contact.html" class="footer-link">Contact</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  (function() {
-    // Mobile menu toggle
-    const toggle = document.getElementById('mobileToggle');
-    const navList = document.getElementById('navList');
-    if (toggle && navList) {
-      toggle.addEventListener('click', () => {
-        navList.classList.toggle('open');
-        toggle.textContent = navList.classList.contains('open') ? '✕' : '☰';
-      });
-      navList.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          navList.classList.remove('open');
-          toggle.textContent = '☰';
-        });
-      });
-    }
-    
-    // Active link highlight
-    let currentPage = window.location.pathname.split('/').pop();
-    if (currentPage === "" || currentPage === "/") currentPage = "index.html";
-    document.querySelectorAll('.nav-link').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPage) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-    
-    // Scroll reveal observer
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
-    revealElements.forEach(el => observer.observe(el));
-    
-    // Immediate reveal for any visible elements
-    setTimeout(() => {
-      revealElements.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-          el.classList.add('revealed');
-          observer.unobserve(el);
-        }
-      });
-    }, 100);
-  })();
-</script>
+  <footer class="site-footer"><div class="site-width footer-row"><span>© 2026 L. J. Llamas · Civil Engineering</span><div class="footer-links"><a href="mailto:lsjairam@gmail.com">Email</a><a href="https://linkedin.com/in/lsjairam" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="#main">Back to top ↑</a></div></div></footer>
+  <script src="js/portfolio.js?v=2" defer></script>
 </body>
 </html>

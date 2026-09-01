@@ -1,7 +1,7 @@
 /* Self-hosted Archivo variable family — SIL Open Font License, see assets/fonts/OFL.txt */
 @font-face {
   font-family: 'Archivo';
-  src: url('../assets/Archivo[wdth,wght].ttf') format('truetype');
+  src: url('../assets/fonts/Archivo[wdth,wght].ttf') format('truetype');
   font-style: normal;
   font-weight: 100 900;
   font-stretch: 62.5% 125%;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: 'Archivo';
-  src: url('../assets/Archivo-Italic[wdth,wght].ttf') format('truetype');
+  src: url('../assets/fonts/Archivo-Italic[wdth,wght].ttf') format('truetype');
   font-style: italic;
   font-weight: 100 900;
   font-stretch: 62.5% 125%;
