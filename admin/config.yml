@@ -2,9 +2,9 @@ backend:
   name: github
   repo: lsjairam/lsjairam.github.io
   branch: main
-  # Replace with your deployed auth Worker's HTTPS origin (see docs/CMS-SETUP.md).
-  # This intentionally does not fall back to Netlify's authentication service.
-  base_url: https://notes-auth.example.invalid
+  # Public login-service address only; credentials stay in Cloudflare.
+  # Use the exact HTTPS origin so Decap validates the popup's messages.
+  base_url: https://engrllamas-notes-auth.lsjairam.workers.dev
   auth_endpoint: auth
   squash_merges: true
 
