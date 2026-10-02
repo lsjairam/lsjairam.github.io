@@ -64,5 +64,5 @@ collections:
           - { label: SEO title, name: title, widget: string, required: false }
           - { label: SEO description, name: description, widget: text, required: false }
           - { label: Social sharing image, name: image, widget: image, required: false }
-      - { label: Article, name: body, widget: markdown, hint: "Use headings, links, lists, and images. Raw HTML is displayed as text." }
+      - { label: Article, name: body, widget: markdown, sanitize_preview: true, hint: "Use headings, links, lists, and images. Raw HTML is displayed as text on published pages." }
 

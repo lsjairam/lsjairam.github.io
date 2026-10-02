@@ -18,7 +18,7 @@
           h("p", { className: "note-byline" }, "L. J. Llamas · " + (date ? String(date).slice(0, 10) : ""))),
         h("div", { className: "site-width note-content" },
           cover ? h("figure", { className: "note-cover" },
-            h("img", { src: this.props.getAsset(cover).toString(), alt: data.get("cover_alt") || "" }),
+            h("img", { src: this.props.getAsset(window.cmsAssetPath(cover)).toString(), alt: data.get("cover_alt") || "" }),
             data.get("cover_caption") ? h("figcaption", {}, data.get("cover_caption")) : null) : null,
           h("div", { className: "note-body" }, this.props.widgetFor("body"))));
     },
