@@ -6,9 +6,15 @@ Decap CMS provides the editor at `/admin/`.
 
 ## First-time setup
 
-Follow [CMS setup](docs/CMS-SETUP.md) to enable GitHub Actions deployment and connect
-the self-hosted GitHub login service. The checked-in authentication URL is a
-deliberately inactive placeholder; live login is not available until setup is done.
+Follow [CMS setup](docs/CMS-SETUP.md) to enable GitHub Actions deployment and finish
+testing the self-hosted GitHub login service. The editor points to the owner's
+Cloudflare Worker; credentials remain outside this public repository. The site
+changes are still in the draft implementation branch, pending approval to go live.
+
+**Security hold:** do not activate or merge this implementation yet. The pinned
+Decap release includes dependencies with unresolved security advisories. See the
+current assessment in [CMS setup](docs/CMS-SETUP.md#security-hold). The deployment
+workflow checks the full dependency tree and will not deploy while that check fails.
 
 ## Write and publish
 
