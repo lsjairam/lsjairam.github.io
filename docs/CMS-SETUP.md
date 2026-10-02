@@ -7,6 +7,61 @@ builds with Eleventy and deploys only the generated `_site/` folder.
 No domain transfer, Porkbun change, Netlify account, Decap Turbo subscription, or
 server at home is needed.
 
+## Current setup — 2 October 2026
+
+- The owner deployed `https://engrllamas-notes-auth.lsjairam.workers.dev` in their
+  Cloudflare account. The Worker code, account/repository restrictions, and public
+  Client ID are configured; the owner entered the Client Secret directly into
+  Cloudflare, where it is encrypted. No real secret is included in this repository.
+- The [Engrllamas Notes OAuth app](https://github.com/settings/applications/3898468)
+  is registered with the exact callback URL below. User access token expiration
+  was kept enabled during registration.
+- Invocation logs are disabled and general logging remains enabled. This was
+  saved and verified after reloading the Cloudflare dashboard. Traces remain off.
+- The public service's root response and its redirect to GitHub's authorization
+  endpoint have been verified. This does **not** verify the owner's Client Secret,
+  token exchange, popup handshake, or a full CMS sign-in.
+- `admin/config.yml` now targets that exact service in the implementation branch.
+  The draft review has not been merged and the live website is unchanged.
+- Remaining: resolve the security hold below, review and approve activation, enable the generated GitHub Pages
+  deployment, merge, authorize GitHub access, and test a real publication.
+
+### Security hold
+
+Do not merge or activate the CMS yet. The full `npm audit` on 2 October 2026
+reported 30 affected packages (23 moderate, 7 high), tracing to three underlying
+advisories, not 30 independent vulnerabilities. Functional tests and a successful
+build do not establish that the editor is safe to deploy.
+
+- [Plate HTML deserialization](https://github.com/udecode/plate/security/advisories/GHSA-qrfj-mgw8-j9c6):
+  untrusted HTML can trigger browser behavior during parsing. The installed
+  `@platejs/core` is 49.2.21; the fixed stable version is 53.3.11 or later.
+- [trim denial of service](https://github.com/advisories/GHSA-w5p7-h5w8-2hfq):
+  the installed `trim` is 0.0.1; the fix is 0.0.3.
+- [uuid bounds check](https://github.com/advisories/GHSA-w5hq-g745-h8pq):
+  dependency audit also flags older uuid versions. Reachability through this CMS
+  configuration has not been established.
+
+The published Decap 3.16.3 source map confirms that Plate 49.2.21 and trim 0.0.1
+are embedded in the browser bundle copied into `/admin/`. Decap 3.16.3 is still the
+official npm stable release at this check. A package override alone would **not**
+repair that prebuilt browser bundle. Do not use `npm audit fix --force` as a
+substitute for examining the resulting editor.
+
+The GitHub workflow now runs the full `npm audit --audit-level=moderate`, including
+development dependencies because the CMS browser bundle comes from one. A failed
+audit blocks the build job and deployment. The latest functional checks pass, but
+the security check is expected to fail until remediation is verified.
+
+Before activation, choose and verify either a maintained upstream fixed release
+or a reproducible, patched source build. A custom source build is a maintenance
+change requiring the owner's approval. Preserve owner-only login and existing
+secret/logging protections; do not grant real GitHub CMS authorization during
+this hold. The live website and its existing deployment settings remain unchanged.
+
+The instructions below are retained for maintenance or recreating the setup.
+Do not create a duplicate Worker or OAuth app if the existing ones are available.
+
 ## 1. Enable the generated-site deployment
 
 After the implementation branch has passed its checks and is ready to merge:
@@ -49,13 +104,27 @@ Wrangler will open Cloudflare's sign-in/authorization flow. Complete it yourself
 The first deployment can run without secrets; `/auth` returns a configuration
 message until they are added.
 
-Record the exact HTTPS URL printed by the deployment, for example:
+The deployed HTTPS origin is:
 
 ```text
-https://engrllamas-notes-auth.YOUR-SUBDOMAIN.workers.dev
+https://engrllamas-notes-auth.lsjairam.workers.dev
 ```
 
-This is an example, not a preconfigured working service.
+If you intentionally recreate the Worker at a different address, update both the
+GitHub callback and the CMS `base_url` to match it.
+
+### Keep callback URLs out of request logs
+
+GitHub redirects to `/callback` with a temporary authorization code in the URL.
+Cloudflare invocation logs can include request URLs. For this Worker, keep
+**Settings → Observability → Include Invocation logs** unchecked, leave general
+**Logs** enabled, and keep **Traces** disabled. Deploy changes and verify they
+remain saved after reloading. No destination for exporting telemetry is configured.
+
+`auth/wrangler.toml` records those settings so later code deployments do not
+silently restore automatic invocation logging. The Worker itself does not log
+tokens, secrets, authorization codes, or GitHub responses. Avoid live tail sessions
+or browser screenshots that expose login callback URLs or newly generated secrets.
 
 ## 3. Register your GitHub OAuth application
 
@@ -65,8 +134,9 @@ Use these values:
 
 - **Application name:** Engrllamas Notes
 - **Homepage URL:** https://engrllamas.com
-- **Authorization callback URL:** your exact Worker URL followed by `/callback`,
-  for example `https://engrllamas-notes-auth.YOUR-SUBDOMAIN.workers.dev/callback`.
+- **Redirect URI:** `https://engrllamas-notes-auth.lsjairam.workers.dev/callback`.
+- Leave **Allow wildcard matching** and **Enable Device Flow** unchecked.
+- Keep **Expire user access tokens** enabled.
 
 Register the application and generate its client secret yourself. In the `auth`
 folder, run:
@@ -76,9 +146,21 @@ npx wrangler secret put GITHUB_CLIENT_ID
 npx wrangler secret put GITHUB_CLIENT_SECRET
 ```
 
-Enter each value at the corresponding prompt. Do not paste either value into
-`admin/config.yml`, GitHub comments, or this public repository. Cloudflare stores
-them as Worker secrets.
+Enter each value at the corresponding prompt. The Client ID is public; it can
+also be stored as a plain Worker variable. The Client Secret must remain a Worker
+secret, never a plain variable. Do not put the Client Secret in `admin/config.yml`,
+GitHub comments, chat, screenshots, or this public repository.
+
+For dashboard setup, use **Worker Settings → Runtime variables and secrets →
+Add variable**, with key `GITHUB_CLIENT_SECRET`, the copied secret as the value,
+and **Secret** checked. Enter and save the credential yourself. Add the public
+identifier separately as `GITHUB_CLIENT_ID`. Do not assume generating a secret
+copies it to the clipboard. Copy it immediately while its full value is visible.
+
+The bridge does not persist refresh tokens or implement automatic token refresh.
+When an expiring GitHub session stops working, save any writing, log out, and
+sign in again. Do not disable expiration to avoid signing in again. Once login
+works, review unused secrets with the owner before removing any old credentials.
 
 The settings in `auth/wrangler.toml` restrict successful sign-in to GitHub user
 `lsjairam`, with write access to `lsjairam/lsjairam.github.io`, and send the result
@@ -86,20 +168,22 @@ only to `https://engrllamas.com`.
 
 ## 4. Connect Decap to the deployed service
 
-In `admin/config.yml`, replace:
+`admin/config.yml` is now configured with:
 
 ```yaml
-base_url: https://notes-auth.example.invalid
+base_url: https://engrllamas-notes-auth.lsjairam.workers.dev
 ```
 
-with your exact Worker origin, with **no trailing slash**. Keep:
+Keep the exact HTTPS Worker origin, with **no trailing slash**, and keep:
 
 ```yaml
 auth_endpoint: auth
 ```
 
-Commit that change to `main` and wait for deployment. This URL is public and
-contains no secret.
+The URL is public and contains no secret. Review the implementation branch and
+approve the production switch before merging it to `main`. The CMS uses `main`
+for content, not the implementation branch; changing this configuration in a
+draft review does not publish the editor or website.
 
 Then open https://engrllamas.com/admin/ and choose **Login with GitHub**. GitHub
 will ask you to authorize your OAuth application. The service requests
@@ -131,10 +215,13 @@ Decap's editorial workflow should also be used when updating existing articles.
 
 ## If something does not work
 
-- **Login opens an invalid address:** replace the placeholder `base_url` and deploy.
+- **Login opens the wrong address:** verify the exact HTTPS `base_url` and deploy.
 - **GitHub callback mismatch:** the registered callback must match the Worker's
   HTTPS origin plus `/callback` exactly.
-- **OAuth service has not been configured:** add both Worker secrets.
+- **OAuth service has not been configured:** check that `GITHUB_CLIENT_ID` is
+  present and `GITHUB_CLIENT_SECRET` is saved as an encrypted Worker secret.
+- **Session stops working later:** save your writing, log out, and sign in again;
+  expiring tokens are intentional. This setup does not automatically refresh them.
 - **Sign-in session expired:** close the popup and try again; the login cookie
   lasts ten minutes. Allow the popup and normal first-party cookies.
 - **Restricted to the site owner:** log in as `lsjairam`.
@@ -161,4 +248,5 @@ For the Worker, retain secrets in Cloudflare and deploy code updates from `auth/
 - [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 - [Cloudflare Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Cloudflare Worker secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
+- [Cloudflare invocation logging](https://developers.cloudflare.com/workers/observability/logs/workers-logs/)
 
