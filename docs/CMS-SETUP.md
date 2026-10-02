@@ -23,12 +23,12 @@ server at home is needed.
   token exchange, popup handshake, or a full CMS sign-in.
 - `admin/config.yml` now targets that exact service in the implementation branch.
   The draft review has not been merged and the live website is unchanged.
-- Remaining: resolve the security hold below, review and approve activation, enable the generated GitHub Pages
+- Remaining: review and approve activation after the patched branch passes checks, enable the generated GitHub Pages
   deployment, merge, authorize GitHub access, and test a real publication.
 
 ### Security hold
 
-Do not merge or activate the CMS yet. The full `npm audit` on 2 October 2026
+The original full `npm audit` on 2 October 2026
 reported 30 affected packages (23 moderate, 7 high), tracing to three underlying
 advisories, not 30 independent vulnerabilities. Functional tests and a successful
 build do not establish that the editor is safe to deploy.
@@ -48,16 +48,48 @@ official npm stable release at this check. A package override alone would **not*
 repair that prebuilt browser bundle. Do not use `npm audit fix --force` as a
 substitute for examining the resulting editor.
 
-The GitHub workflow now runs the full `npm audit --audit-level=moderate`, including
-development dependencies because the CMS browser bundle comes from one. A failed
-audit blocks the build job and deployment. The latest functional checks pass, but
-the security check is expected to fail until remediation is verified.
+#### Owner-approved remediation
 
-Before activation, choose and verify either a maintained upstream fixed release
-or a reproducible, patched source build. A custom source build is a maintenance
-change requiring the owner's approval. Preserve owner-only login and existing
-secret/logging protections; do not grant real GitHub CMS authorization during
-this hold. The live website and its existing deployment settings remain unchanged.
+The owner approved maintaining a patched source build. The implementation now
+compiles pinned individual Decap ESM modules instead of copying the prebuilt
+distribution. It uses core 3.19.1, GitHub backend 3.8.3, and Markdown widget
+3.13.1, with the other required fields pinned in `package.json`/the lockfile.
+The unused Plate/richtext editor is not installed or shipped. Overrides select
+`trim` 0.0.3 and `uuid` 11.1.1. The production compilation currently does not
+include uuid; the guard also rejects an older version if later included.
+
+`scripts/build-cms.mjs` inspects the actual compilation's module resources and
+versions, rejects Plate, prebuilt Decap distributions, and the test backend,
+and hashes the emitted assets. Tests verify those hashes and that the published
+assets are identical; private source maps, manifests, and the test harness
+are excluded from `_site/`. This checks the browser build, not only installation
+metadata. Markdown preview sanitization is explicitly enabled; public articles
+do not execute authored raw HTML or template expressions.
+
+A clean `npm ci --ignore-scripts` and the full dependency audit report **zero
+known vulnerabilities** on 2 October 2026. Twelve automated tests pass with the
+site build. Local browser checks cover Markdown/rich-text conversion, custom
+preview, SEO fields, cover upload/alternative text/caption, draft saves, and
+Draft → In review → Ready → Publish. Script/event-handler test content was removed from
+the preview without execution. After a browser timeout, a fresh in-memory
+test completed the final Publish action and showed "Entry published".
+Real GitHub OAuth, publishing,
+and deployment still require end-to-end verification after approved activation.
+
+The GitHub workflow retains the full `npm audit --audit-level=moderate`, including
+development dependencies because their code ships in the CMS. It runs before
+the build and deployment artifact. A failed audit or module check stops the
+build; no warning is ignored. Zero audit findings are not a security guarantee.
+
+The image and Markdown widgets wrap `getAsset` for this site's
+`/assets/uploads/` paths: the editor resolves repository assets (including
+unsaved in-memory blobs) instead of prematurely requesting their public URL.
+The saved root-relative URL is unchanged. `lib/cms-assets.cjs` and its test must
+stay in sync with the upload folder in `admin/config.yml`; external URLs are
+left untouched. This uses Decap's extension interface, not modified vendor files.
+
+The live site and Pages settings remain unchanged. Do not merge, change Pages
+source, or authorize real CMS GitHub access without the owner's next approval.
 
 The instructions below are retained for maintenance or recreating the setup.
 Do not create a duplicate Worker or OAuth app if the existing ones are available.
@@ -237,9 +269,22 @@ CMS publication must be verified after your Worker and OAuth app are configured.
 
 ## Maintenance and references
 
-The root lockfile pins the site build. The CMS is versioned at 3.16.3 and served
-from the generated site's `/admin/`, including lazy-loaded scripts and WebAssembly.
-Update dependencies deliberately, run `npm run check`, and preview before merging.
+The root lockfile pins the site build and individual CMS modules. The custom
+bundle is built by webpack and served from the generated site's `/admin/`,
+including lazy-loaded scripts and WebAssembly. It requires ongoing maintenance.
+
+Before updating dependencies, run `npm ci --ignore-scripts`,
+`npm run audit:security`, and `npm run check`. Test controls with
+`npm run preview:cms-test` at http://127.0.0.1:8085/admin-test/. This isolated
+localhost-only harness has no GitHub access; test saves/uploads stay in memory,
+disappear on reload, and are never deployed. The real `/admin/` is not this
+offline test editor. Do not add the test backend to the production module entry.
+
+Preserve the overrides and compiled-module guard until deliberately reviewed
+alongside upstream fixes. Adding a widget means pinning, importing, and
+registering its individual module in `cms/editor.js`, then repeating the audit,
+build, tests, and browser checks. Do not swap in the prebuilt bundle or a CDN
+script, remove the audit, or force dependency upgrades to make checks pass.
 For the Worker, retain secrets in Cloudflare and deploy code updates from `auth/`.
 
 - [Decap GitHub backend](https://decapcms.org/docs/github-backend/)
