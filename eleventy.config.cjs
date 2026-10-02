@@ -15,11 +15,12 @@ module.exports = function (config) {
   });
   for (const path of ["assets", "css", "js", "Samples", "admin", "CNAME"]) config.addPassthroughCopy(path);
   config.addPassthroughCopy({ "*.html": "." });
-  config.addPassthroughCopy({ "node_modules/decap-cms/dist/decap-cms.js": "admin/decap-cms.js" });
-  config.addPassthroughCopy({ "node_modules/decap-cms/dist/*.decap-cms.js": "admin" });
-  config.addPassthroughCopy({ "node_modules/decap-cms/dist/*.wasm": "admin" });
-  config.addPassthroughCopy({ "node_modules/decap-cms/dist/cms.css": "admin/cms.css" });
-  config.addPassthroughCopy({ "node_modules/decap-cms/dist/decap-cms.js.LICENSE.txt": "admin/decap-cms.js.LICENSE.txt" });
+  config.addPassthroughCopy({ ".cms-build/*.js": "admin" });
+  config.addPassthroughCopy({ ".cms-build/*.wasm": "admin" });
+  config.addPassthroughCopy({ ".cms-build/*.woff*": "admin" });
+  config.addPassthroughCopy({ ".cms-build/*.LICENSE.txt": "admin" });
+  config.ignores.add(".cms-build/**");
+  config.ignores.add("cms/**");
   config.ignores.add("README.md");
   config.ignores.add("docs/**");
   config.ignores.add("auth/**");

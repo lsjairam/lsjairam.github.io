@@ -11,10 +11,12 @@ testing the self-hosted GitHub login service. The editor points to the owner's
 Cloudflare Worker; credentials remain outside this public repository. The site
 changes are still in the draft implementation branch, pending approval to go live.
 
-**Security hold:** do not activate or merge this implementation yet. The pinned
-Decap release includes dependencies with unresolved security advisories. See the
-current assessment in [CMS setup](docs/CMS-SETUP.md#security-hold). The deployment
-workflow checks the full dependency tree and will not deploy while that check fails.
+**Activation still needs approval.** The owner-approved patched source build
+replaces Decap's affected prebuilt bundle. The clean installation and full
+dependency audit report zero known vulnerabilities on 2 October 2026. See the
+[security assessment](docs/CMS-SETUP.md#security-hold). The deployment workflow
+keeps the full audit and compiled-module checks; a failure stops deployment.
+This does not guarantee the absence of security issues.
 
 ## Write and publish
 
@@ -36,7 +38,7 @@ is published.
 Requires Node.js 22 or newer.
 
 ```sh
-npm ci
+npm ci --ignore-scripts
 npm run dev
 ```
 
@@ -44,15 +46,23 @@ Open http://localhost:8080/ (or the address printed by Eleventy).
 
 ```sh
 npm run check
+npm run audit:security
 ```
 
-This runs content/authentication tests and creates the production site in
+This builds the CMS from pinned individual modules, runs content/authentication
+and browser-bundle tests, and creates the production site in
 `_site/`. Publish only `_site/`, never the repository root. The build serves
-the pinned Decap bundle, its lazy-loaded chunks, and fonts from your own site.
+the locally compiled Decap bundle and its lazy-loaded assets from your own site.
 
 Local `/admin/` normally connects to the live GitHub backend. It is not an offline
 draft editor. Production OAuth deliberately accepts only https://engrllamas.com.
 For local writing, edit Markdown files and use the local site preview.
+
+To test the CMS controls without GitHub access, run `npm run check`, then
+`npm run preview:cms-test`, and open http://127.0.0.1:8085/admin-test/.
+This separate localhost-only harness uses in-memory sample content and uploads.
+Saves disappear on reload and do not change files or GitHub. It is excluded from
+the production site; never substitute its test backend into `/admin/`.
 
 ## Where things live
 
@@ -61,7 +71,8 @@ For local writing, edit Markdown files and use the local site preview.
 - Notes layout: `_includes/note.njk` and shared Notes header/footer/base templates.
 - Index: `templates/notes-index.njk`.
 - Long-form styles: `css/notes.css`; existing portfolio styles are unchanged.
-- CMS: `admin/index.html`, `admin/config.yml`, and `admin/preview.js`.
+- CMS: `admin/` (configuration/preview/start), `cms/` (module entry/build config),
+  and `scripts/build-cms.mjs` (compiler and module verification).
 - Images: `assets/uploads/`.
 - GitHub Pages deployment: `.github/workflows/pages.yml`.
 - Login service: `auth/`; never copied into the deployed static site.
@@ -91,4 +102,19 @@ project information out of drafts and use redacted or purpose-made images.
 SEO title/description default to the article title/summary. Optional cover/social
 images generate sharing metadata. A sitemap is generated automatically and
 excludes drafts, future notes, and the admin interface.
+
+## Maintain the patched editor
+
+The custom build is intentional: the all-in-one Decap 3.16.3 bundle embeds
+affected dependencies even if an installation override changes the dependency
+tree. This build imports only the GitHub backend and the widgets used here,
+excludes Plate/richtext and prebuilt distributions, and verifies the actual
+compiled module versions. `trim` is pinned to 0.0.3 and `uuid` to 11.1.1.
+
+Keep the lockfile, overrides, full dependency audit, and module guard together.
+Update pinned Decap components deliberately; run a clean install, audit, full
+build/tests, and the local editor test before merging. To add a widget, import
+and register its individual module in `cms/editor.js`. Do not replace this with
+a CDN script or the all-in-one prebuilt package. Reassess the overrides/guard
+when upstream fixes are available; do not silence the audit to deploy.
 
