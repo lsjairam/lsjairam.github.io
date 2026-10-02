@@ -1,0 +1,88 @@
+# Engrllamas portfolio and Notes
+
+The original HTML/CSS portfolio is retained. Eleventy generates the Notes index at
+`/blog/` and one page at `/blog/<filename>/` for each published Markdown note.
+Decap CMS provides the editor at `/admin/`.
+
+## First-time setup
+
+Follow [CMS setup](docs/CMS-SETUP.md) to enable GitHub Actions deployment and connect
+the self-hosted GitHub login service. The checked-in authentication URL is a
+deliberately inactive placeholder; live login is not available until setup is done.
+
+## Write and publish
+
+1. Visit https://engrllamas.com/admin/ and log in with GitHub.
+2. Open **Notes** and choose **New Note**, or continue one of the existing drafts.
+3. Add title, date, category, summary, article text, and optional images.
+4. **Save** keeps your work in Decap's editorial workflow. Review it in the preview.
+5. When ready, choose **Published** in **Site visibility**, save, move the workflow
+   item to **Ready**, and use **Publish**.
+6. GitHub builds the site. After a successful deployment the article appears at
+   `/blog/<filename>/` and is added to `/blog/`.
+
+The four existing ideas are draft outlines, not finished articles. Drafts do not
+generate pages. The original public editorial plan remains until the first note
+is published.
+
+## Local development
+
+Requires Node.js 22 or newer.
+
+```sh
+npm ci
+npm run dev
+```
+
+Open http://localhost:8080/ (or the address printed by Eleventy).
+
+```sh
+npm run check
+```
+
+This runs content/authentication tests and creates the production site in
+`_site/`. Publish only `_site/`, never the repository root. The build serves
+the pinned Decap bundle, its lazy-loaded chunks, and fonts from your own site.
+
+Local `/admin/` normally connects to the live GitHub backend. It is not an offline
+draft editor. Production OAuth deliberately accepts only https://engrllamas.com.
+For local writing, edit Markdown files and use the local site preview.
+
+## Where things live
+
+- Existing portfolio: root HTML files, `css/`, `js/`, `assets/`, and `Samples/`.
+- Notes: `content/notes/*.md`; the filename is the permanent article URL.
+- Notes layout: `_includes/note.njk` and shared Notes header/footer/base templates.
+- Index: `templates/notes-index.njk`.
+- Long-form styles: `css/notes.css`; existing portfolio styles are unchanged.
+- CMS: `admin/index.html`, `admin/config.yml`, and `admin/preview.js`.
+- Images: `assets/uploads/`.
+- GitHub Pages deployment: `.github/workflows/pages.yml`.
+- Login service: `auth/`; never copied into the deployed static site.
+
+The old `blog/index.html` remains as a reference/fallback for the former static
+site, but Eleventy does not copy it. Edit the generated index's template instead.
+The other root HTML files are copied byte for byte, with their navigation label
+changed to **Notes**. Their existing URLs remain the same.
+
+## Dates, drafts, and URLs
+
+The visibility field is an extra safeguard: a note with `status: draft` stays off
+the website even if its Markdown is merged into `main`. Set `status: published`
+before using Decap's final Publish action. A future publication date is also
+excluded until that day in Asia/Manila. A daily scheduled build runs shortly after
+midnight in Manila; GitHub's schedule may be delayed. Run the workflow manually
+if a dated note must appear immediately.
+
+Changing the title does not require changing the filename. Keep the filename
+after publication to preserve links. If you deliberately rename a published
+file, add an explicit redirect page for the old URL.
+
+This is a **public GitHub repository**. Draft branches and media uploads can be
+read on GitHub even though they do not appear on the website. Keep confidential
+project information out of drafts and use redacted or purpose-made images.
+
+SEO title/description default to the article title/summary. Optional cover/social
+images generate sharing metadata. A sitemap is generated automatically and
+excludes drafts, future notes, and the admin interface.
+
