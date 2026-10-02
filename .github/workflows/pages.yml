@@ -24,6 +24,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+      # Decap is a devDependency, but its prebuilt bundle ships to /admin/.
+      # Audit the full tree and fail closed before creating a deployment artifact.
+      - name: Check dependency security before deployment
+        run: npm audit --audit-level=moderate
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
