@@ -14,7 +14,7 @@ test("real site build generates articles and index, excludes drafts, and preserv
   await mkdir(input);
   try {
     // Run the actual configuration against an isolated source copy.
-    for (const path of ["_includes", "_data", "templates", "content", "lib", "admin", "css", "js", "CNAME",
+    for (const path of ["_includes", "_data", "templates", "content", "lib", "admin", ".cms-build", "css", "js", "CNAME",
       "index.html", "about.html", "cv.html", "artifacts.html", "contact.html"]) {
       await cp(join(root, path), join(input, path), { recursive: true });
     }
@@ -66,6 +66,16 @@ test("real site build generates articles and index, excludes drafts, and preserv
     assert.equal(cms.backend.repo, "lsjairam/lsjairam.github.io");
     assert.equal(cms.publish_mode, "editorial_workflow");
     assert.equal(cms.public_folder, "/assets/uploads");
+    assert.equal(cms.media_folder, "assets/uploads");
+    assert.equal(cms.collections[0].fields.find(field => field.name === "body").sanitize_preview, true);
+    const manifest = JSON.parse(await readFile(join(root, ".cms-build/build-manifest.json"), "utf8"));
+    for (const asset of manifest.assets) {
+      assert.deepEqual(await readFile(join(output, "admin", asset.name)), await readFile(join(root, ".cms-build", asset.name)));
+      await assert.rejects(readFile(join(output, "admin", asset.name + ".map")));
+    }
+    for (const privatePath of ["admin/build-manifest.json", "cms/editor.js", "tests/browser/backend.js", "admin-test/index.html"]) {
+      await assert.rejects(readFile(join(output, privatePath)));
+    }
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
