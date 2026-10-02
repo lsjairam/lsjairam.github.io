@@ -1,0 +1,17 @@
+---
+layout: notes-base.njk
+---
+<article>
+  <header class="page-hero site-width note-hero">
+    <p class="eyebrow">Notes · {{ category }}</p>
+    <h1>{{ title }}</h1>
+    <p class="page-lead">{{ summary }}</p>
+    <p class="note-byline">{{ site.author }} · <time datetime="{{ date | isoDate }}">{{ date | readableDate }}</time> · {{ content | readingTime }} min read</p>
+  </header>
+  <div class="site-width note-content">
+    {% if cover_image %}<figure class="note-cover"><img src="{{ cover_image }}" alt="{{ cover_alt }}" fetchpriority="high">{% if cover_caption %}<figcaption>{{ cover_caption }}</figcaption>{% endif %}</figure>{% endif %}
+    <div class="note-body">{{ content | safe }}</div>
+    <nav class="note-navigation" aria-label="Article navigation"><a class="text-link" href="/blog/">← All notes</a><a class="text-link" href="/artifacts.html">Related artifacts →</a></nav>
+  </div>
+</article>
+

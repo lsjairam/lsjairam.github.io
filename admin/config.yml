@@ -1,0 +1,68 @@
+backend:
+  name: github
+  repo: lsjairam/lsjairam.github.io
+  branch: main
+  # Public login-service address only; credentials stay in Cloudflare.
+  # Use the exact HTTPS origin so Decap validates the popup's messages.
+  base_url: https://engrllamas-notes-auth.lsjairam.workers.dev
+  auth_endpoint: auth
+  squash_merges: true
+
+publish_mode: editorial_workflow
+site_url: https://engrllamas.com
+display_url: https://engrllamas.com
+media_folder: assets/uploads
+public_folder: /assets/uploads
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+collections:
+  - name: notes
+    label: Notes
+    label_singular: Note
+    folder: content/notes
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}/"
+    summary: "{{title}} — {{status}}"
+    sortable_fields: [date, title, category]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: Date
+        name: date
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+        picker_utc: true
+        hint: "Publication date. A future date stays off the site until that day in Manila."
+      - label: Category
+        name: category
+        widget: select
+        options: [Document Control, Coordination, QA/QC, Project Controls, Digital Practice]
+      - { label: Summary, name: summary, widget: text, hint: "Short introduction shown on the Notes index and used as the default SEO description." }
+      - label: Site visibility
+        name: status
+        widget: select
+        default: draft
+        options:
+          - { label: Draft — keep off the site, value: draft }
+          - { label: Published — show after workflow Publish, value: published }
+        hint: "Set Published when ready, then use the workflow Publish action. Draft never generates a public article."
+      - { label: Cover image, name: cover_image, widget: image, required: false }
+      - { label: Cover image alternative text, name: cover_alt, widget: string, required: false, hint: "Required when adding a cover image; describe what it shows." }
+      - { label: Cover image caption, name: cover_caption, widget: string, required: false }
+      - label: SEO
+        name: seo
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: SEO title, name: title, widget: string, required: false }
+          - { label: SEO description, name: description, widget: text, required: false }
+          - { label: Social sharing image, name: image, widget: image, required: false }
+      - { label: Article, name: body, widget: markdown, sanitize_preview: true, hint: "Use headings, links, lists, and images. Raw HTML is displayed as text on published pages." }
+

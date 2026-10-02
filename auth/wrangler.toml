@@ -1,0 +1,23 @@
+name = "engrllamas-notes-auth"
+main = "worker.mjs"
+compatibility_date = "2026-10-02"
+workers_dev = true
+
+[vars]
+CMS_ORIGIN = "https://engrllamas.com"
+GITHUB_REPO = "lsjairam/lsjairam.github.io"
+ALLOWED_GITHUB_USER = "lsjairam"
+# Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET using Wrangler secrets.
+
+# Keep runtime error logging, but do not persist OAuth callback request URLs.
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+invocation_logs = false
+persist = true
+
+[observability.traces]
+enabled = false
+

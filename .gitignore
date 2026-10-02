@@ -1,0 +1,8 @@
+node_modules/
+_site/
+.test-output/
+.cms-build/
+auth/.wrangler/
+auth/.dev.vars
+.env
+

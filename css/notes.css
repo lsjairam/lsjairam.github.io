@@ -1,0 +1,27 @@
+.note-card h2 a:hover, .note-body a:hover { color: var(--blue); }
+.note-card .note-meta { margin-top: 1rem; font-size: 0.78rem; }
+.note-hero { max-width: 900px; }
+.note-hero h1 { margin-bottom: 1.5rem; overflow-wrap: anywhere; }
+.note-hero .page-lead { max-width: 44rem; }
+.note-byline { margin: 1.75rem 0 0; color: var(--muted); font-size: 0.85rem; }
+.note-content { max-width: 800px; padding-block: clamp(2.5rem, 6vw, 5rem); }
+.note-cover { margin: 0 0 3rem; }
+.note-cover img { width: 100%; height: auto; border-radius: var(--radius); }
+.note-cover figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.85rem; }
+.note-body { font-size: clamp(1.05rem, 1.8vw, 1.18rem); line-height: 1.8; overflow-wrap: anywhere; }
+.note-body > :first-child { margin-top: 0; }
+.note-body h2, .note-body h3 { color: var(--ink); line-height: 1.2; letter-spacing: -0.035em; }
+.note-body h2 { margin: 3rem 0 1rem; font-size: clamp(1.65rem, 3vw, 2.25rem); }
+.note-body h3 { margin: 2rem 0 0.75rem; font-size: 1.4rem; }
+.note-body p, .note-body ul, .note-body ol { margin-block: 1.2rem; }
+.note-body li + li { margin-top: 0.4rem; }
+.note-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 0.2em; }
+.note-body img { max-width: 100%; height: auto; border-radius: var(--radius-sm); margin: 2rem auto; }
+.note-body blockquote { margin: 2rem 0; border-left: 3px solid var(--blue); padding-left: 1.5rem; color: var(--muted); }
+.note-body pre { padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); overflow-x: auto; }
+.note-body code { font-size: 0.88em; }
+.note-body table { display: block; overflow-x: auto; max-width: 100%; border-collapse: collapse; font-size: 0.9em; }
+.note-body th, .note-body td { padding: 0.7rem; border: 1px solid var(--line); text-align: left; }
+.note-body hr { margin: 3rem 0; border: 0; border-top: 1px solid var(--line); }
+.note-navigation { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; border-top: 1px solid var(--line); margin-top: 4rem; padding-top: 1.5rem; }
+

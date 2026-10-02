@@ -1,0 +1,47 @@
+{
+  "name": "engrllamas-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Existing portfolio with Markdown Notes and self-hosted Decap CMS",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:cms": "node scripts/build-cms.mjs",
+    "preview:cms-test": "node scripts/preview-cms-test.mjs",
+    "build": "node scripts/clean.mjs && npm run build:cms && eleventy",
+    "dev": "npm run build:cms && eleventy --serve",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run build && npm run test",
+    "audit:security": "npm audit --audit-level=moderate"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "create-react-class": "15.7.0",
+    "decap-cms-core": "3.19.1",
+    "decap-cms-backend-github": "3.8.3",
+    "decap-cms-backend-test": "3.5.3",
+    "decap-cms-locales": "3.8.2",
+    "decap-cms-editor-component-image": "3.4.2",
+    "decap-cms-widget-string": "3.3.2",
+    "decap-cms-widget-text": "3.3.2",
+    "decap-cms-widget-datetime": "3.6.2",
+    "decap-cms-widget-select": "3.4.2",
+    "decap-cms-widget-image": "3.4.3",
+    "decap-cms-widget-file": "3.5.3",
+    "decap-cms-widget-object": "3.7.3",
+    "decap-cms-widget-markdown": "3.13.1",
+    "markdown-it": "15.0.2",
+    "nunjucks": "3.2.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "webpack": "5.111.1",
+    "uuid": "11.1.1",
+    "yaml": "2.9.1"
+  },
+  "overrides": {
+    "trim": "0.0.3",
+    "uuid": "11.1.1"
+  }
+}
+
