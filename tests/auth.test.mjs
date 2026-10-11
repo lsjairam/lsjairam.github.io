@@ -28,7 +28,7 @@ test("CMS targets the owner's HTTPS service and deployment keeps callback reques
   assert.ok(!/^\s*GITHUB_CLIENT_SECRET\s*=/m.test(deployment));
   const workflow = parse(await readFile(new URL("../.github/workflows/pages.yml", import.meta.url), "utf8"));
   const steps = workflow.jobs.build.steps;
-  const auditIndex = steps.findIndex(step => step.run === "npm audit --audit-level=moderate");
+  const auditIndex = steps.findIndex(step => step.run === "npm run audit:security");
   const uploadIndex = steps.findIndex(step => step.uses?.startsWith("actions/upload-pages-artifact@"));
   assert.ok(auditIndex >= 0 && uploadIndex > auditIndex);
   assert.ok(!steps[auditIndex]["continue-on-error"]);
@@ -107,4 +107,3 @@ test("callback never releases a token for read-only, private, or different repos
     }
   } finally { globalThis.fetch = originalFetch; }
 });
-

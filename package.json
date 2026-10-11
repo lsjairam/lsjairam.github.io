@@ -7,13 +7,14 @@
     "node": ">=22"
   },
   "scripts": {
-    "build:cms": "node scripts/build-cms.mjs",
+    "patch:security": "node scripts/patch-dependencies.mjs",
+    "build:cms": "npm run patch:security && node scripts/build-cms.mjs",
     "preview:cms-test": "node scripts/preview-cms-test.mjs",
     "build": "node scripts/clean.mjs && npm run build:cms && eleventy",
     "dev": "npm run build:cms && eleventy --serve",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run build && npm run test",
-    "audit:security": "npm audit --audit-level=moderate"
+    "audit:security": "npm run patch:security && node scripts/audit-security.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.6",
@@ -44,4 +45,3 @@
     "uuid": "11.1.1"
   }
 }
-
